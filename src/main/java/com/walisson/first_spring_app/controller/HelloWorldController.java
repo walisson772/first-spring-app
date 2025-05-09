@@ -1,11 +1,10 @@
 package com.walisson.first_spring_app.controller;
 
 
+import com.walisson.first_spring_app.domain.User;
 import com.walisson.first_spring_app.service.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 //Controller -> Serve para criar as nossas ulrs e passar dados para o nosso service
@@ -21,5 +20,10 @@ public class HelloWorldController {
     @GetMapping
     public String helloWord(){
         return helloWorldService.helloWorld("Walisson");
+    }
+
+    @PostMapping("/{id}")
+    public String helloPost(@PathVariable("id") String id, @RequestBody User body ){
+        return "Hello world " + body.getName();
     }
 }
